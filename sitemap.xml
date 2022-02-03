@@ -3,17 +3,37 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>http://decirella.github.io/posts/init_post/</loc>
-    <lastmod>2022-02-02T10:14:29-05:00</lastmod>
+    <loc>http://decirella.github.io/posts/diagrams/</loc>
+    <lastmod>2022-02-03T09:09:18-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://decirella.github.io/tags/diagrams/</loc>
+    <lastmod>2022-02-03T09:09:18-05:00</lastmod>
   </url>
   
   <url>
     <loc>http://decirella.github.io/posts/</loc>
-    <lastmod>2022-02-02T10:14:29-05:00</lastmod>
+    <lastmod>2022-02-03T09:09:18-05:00</lastmod>
   </url>
   
   <url>
     <loc>http://decirella.github.io/</loc>
+    <lastmod>2022-02-03T09:09:18-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://decirella.github.io/tags/software/</loc>
+    <lastmod>2022-02-03T09:09:18-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://decirella.github.io/tags/</loc>
+    <lastmod>2022-02-03T09:09:18-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://decirella.github.io/posts/init_post/</loc>
     <lastmod>2022-02-02T10:14:29-05:00</lastmod>
   </url>
   
@@ -23,10 +43,6 @@
   
   <url>
     <loc>http://decirella.github.io/categories/</loc>
-  </url>
-  
-  <url>
-    <loc>http://decirella.github.io/tags/</loc>
   </url>
   
 </urlset>

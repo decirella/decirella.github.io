@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>Preservation Notes</title>
-    <link>http://decirella.github.io/</link>
-    <description>Recent content on Preservation Notes</description>
+    <title>software on Preservation Notes</title>
+    <link>http://decirella.github.io/tags/software/</link>
+    <description>Recent content in software on Preservation Notes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 03 Feb 2022 09:09:18 -0500</lastBuildDate><atom:link href="http://decirella.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 03 Feb 2022 09:09:18 -0500</lastBuildDate><atom:link href="http://decirella.github.io/tags/software/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Diagrams</title>
       <link>http://decirella.github.io/posts/diagrams/</link>
@@ -16,16 +16,6 @@
       <description>Many times throughout the life of a project I find the need to create some visual component to go along with planning or communicating about some component of a system or technology. After coming to this conclusion, the next step is so often a question of what tool to use for the task! I have used several solutions that broadly fall into two categories: text-based and graphics-based.
 On the text-based side I&amp;rsquo;ve been really enjoying using plantuml for creating various types of diagrams specified in text converted to an image.</description>
     </item>
-    
-    <item>
-      <title>init_post</title>
-      <link>http://decirella.github.io/posts/init_post/</link>
-      <pubDate>Wed, 02 Feb 2022 10:14:29 -0500</pubDate>
-      
-      <guid>http://decirella.github.io/posts/init_post/</guid>
-      <description>Welcome! The plan for this space is to host semi-public, informal notes documenting various digital preservation, software development, and technology-related topics.</description>
-    </item>
-    
     
   </channel>
 </rss>
