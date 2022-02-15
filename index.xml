@@ -6,7 +6,16 @@
     <description>Recent content on Preservation Notes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 03 Feb 2022 09:09:18 -0500</lastBuildDate><atom:link href="http://decirella.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 15 Feb 2022 11:31:47 -0500</lastBuildDate><atom:link href="http://decirella.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Mkisofs</title>
+      <link>http://decirella.github.io/posts/mkisofs/</link>
+      <pubDate>Tue, 15 Feb 2022 11:31:47 -0500</pubDate>
+      
+      <guid>http://decirella.github.io/posts/mkisofs/</guid>
+      <description>A recent project that involved working with a Windows 98 installation running in emulation (QEMU) needed an update installed from a .exe. Needing to get the .exe from my desktop into the Windows 98 environment posed a problem to solve. There are likely many solutions to this problem, the one I found, with the quickest resolution was to create a .iso formatted disk image (iso9660) to mount as a cdrom in the emulated environment.</description>
+    </item>
+    
     <item>
       <title>Diagrams</title>
       <link>http://decirella.github.io/posts/diagrams/</link>

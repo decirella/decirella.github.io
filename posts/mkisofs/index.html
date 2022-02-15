@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Mkisofs | Preservation Notes</title>
+<meta name="keywords" content="emulation, software" />
+<meta name="description" content="A recent project that involved working with a Windows 98 installation running in emulation (QEMU) needed an update installed from a .exe. Needing to get the .exe from my desktop into the Windows 98 environment posed a problem to solve. There are likely many solutions to this problem, the one I found, with the quickest resolution was to create a .iso formatted disk image (iso9660) to mount as a cdrom in the emulated environment.">
+<meta name="author" content="">
+<link rel="canonical" href="http://decirella.github.io/posts/mkisofs/" />
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.e21185e6c4b43ff34c81666f70aa4f80140274057866888c0a5c28addc9b7fd2.css" integrity="sha256-4hGF5sS0P/NMgWZvcKpPgBQCdAV4ZoiMClwordybf9I=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.27cd435cc9ed6abb4b496581b151804f79f366c412620272bb94e2f5f598ebcc.js" integrity="sha256-J81DXMntartLSWWBsVGAT3nzZsQSYgJyu5Ti9fWY68w="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="http://decirella.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://decirella.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://decirella.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://decirella.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="http://decirella.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<meta name="generator" content="Hugo 0.68.3" />
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="Mkisofs" />
+<meta property="og:description" content="A recent project that involved working with a Windows 98 installation running in emulation (QEMU) needed an update installed from a .exe. Needing to get the .exe from my desktop into the Windows 98 environment posed a problem to solve. There are likely many solutions to this problem, the one I found, with the quickest resolution was to create a .iso formatted disk image (iso9660) to mount as a cdrom in the emulated environment." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://decirella.github.io/posts/mkisofs/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-02-15T11:31:47-05:00" />
+<meta property="article:modified_time" content="2022-02-15T11:31:47-05:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Mkisofs"/>
+<meta name="twitter:description" content="A recent project that involved working with a Windows 98 installation running in emulation (QEMU) needed an update installed from a .exe. Needing to get the .exe from my desktop into the Windows 98 environment posed a problem to solve. There are likely many solutions to this problem, the one I found, with the quickest resolution was to create a .iso formatted disk image (iso9660) to mount as a cdrom in the emulated environment."/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Mkisofs",
+      "item": "http://decirella.github.io/posts/mkisofs/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Mkisofs",
+  "name": "Mkisofs",
+  "description": "A recent project that involved working with a Windows 98 installation running in emulation (QEMU) needed an update installed from a .exe. Needing to get the .exe from my desktop into the Windows 98 environment posed a problem to solve. There are likely many solutions to this problem, the one I found, with the quickest resolution was to create a .iso formatted disk image (iso9660) to mount as a cdrom in the emulated environment.",
+  "keywords": [
+    "emulation", "software"
+  ],
+  "articleBody": "A recent project that involved working with a Windows 98 installation running in emulation (QEMU) needed an update installed from a .exe. Needing to get the .exe from my desktop into the Windows 98 environment posed a problem to solve. There are likely many solutions to this problem, the one I found, with the quickest resolution was to create a .iso formatted disk image (iso9660) to mount as a cdrom in the emulated environment. The mkisofs utility, a part of the larger cdrecord package, makes this a painless, one-step process.\n$ mkisofs -o ./test.iso ./test.exe The sample command takes one option: -o to specify the output, resulting iso file and the input data location as an argument, the single .exe file in this case. A directory path can be used for input of multiple files. A quick run through the disktype tool shows:\n$ disktype test.iso --- test.iso Regular file, size 374 KiB (382976 bytes) ISO9660 file system Volume name \"CDROM\" Application \"GENISOIMAGE ISO 9660/HFS FILESYSTEM CREATOR (C) 1993 E.YOUNGDALE (C) 1997-2006 J.PEARSON/J.SCHILLING (C) 2006-2007 CDRKIT TEAM\" Data size 374 KiB (382976 bytes, 187 blocks of 2 KiB) Now we can easily access the included files from the mounted cdrom in our Windows 98 environment:\n$ qemu-system-x86_64 -cdrom test.iso -drive file=w98_2nd=.qcow2 -m 512 -soundhw sb16 -display gtk ",
+  "wordCount" : "217",
+  "inLanguage": "en",
+  "datePublished": "2022-02-15T11:31:47-05:00",
+  "dateModified": "2022-02-15T11:31:47-05:00",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "http://decirella.github.io/posts/mkisofs/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Preservation Notes",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "http://decirella.github.io/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://decirella.github.io/" accesskey="h" title="Preservation Notes (Alt + H)">Preservation Notes</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </span>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://decirella.github.io/archives/" title="archive">
+                    <span>archive</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://decirella.github.io/" title="">
+                    <span></span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title">
+      Mkisofs
+    </h1>
+    <div class="post-meta"><span title='2022-02-15 11:31:47 -0500 EST'>February 15, 2022</span>
+
+</div>
+  </header> 
+  <div class="post-content"><p>A recent project that involved working with a Windows 98 installation running in emulation (<a href="https://www.qemu.org">QEMU</a>) needed an update installed from a <code>.exe</code>.  Needing to get the <code>.exe</code> from my desktop into the Windows 98 environment posed a problem to solve.  There are likely many solutions to this problem, the one I found, with the quickest resolution was to create a <code>.iso</code> formatted disk image (<a href="https://wiki.osdev.org/ISO_9660">iso9660</a>) to mount as a cdrom in the emulated environment.  The <a href="http://cdrtools.sourceforge.net/private/man/cdrecord/mkisofs.8.html">mkisofs</a> utility, a part of the larger <a href="http://cdrtools.sourceforge.net/private/cdrecord.html">cdrecord</a> package, makes this a painless, one-step process.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ mkisofs -o ./test.iso ./test.exe
+</code></pre></div><p>The sample command takes one option: <code>-o</code> to specify the output, resulting <code>iso</code> file and the input data location as an argument, the single <code>.exe</code> file in this case. A directory path can be used for input of multiple files. A quick run through the <code>disktype</code> tool shows:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ disktype test.iso 
+--- test.iso
+Regular file, size <span style="color:#ae81ff">374</span> KiB <span style="color:#f92672">(</span><span style="color:#ae81ff">382976</span> bytes<span style="color:#f92672">)</span>
+ISO9660 file system
+  Volume name <span style="color:#e6db74">&#34;CDROM&#34;</span>
+  Application <span style="color:#e6db74">&#34;GENISOIMAGE ISO 9660/HFS FILESYSTEM CREATOR (C) 1993 E.YOUNGDALE (C) 1997-2006 J.PEARSON/J.SCHILLING (C) 2006-2007 CDRKIT TEAM&#34;</span>
+  Data size <span style="color:#ae81ff">374</span> KiB <span style="color:#f92672">(</span><span style="color:#ae81ff">382976</span> bytes, <span style="color:#ae81ff">187</span> blocks of <span style="color:#ae81ff">2</span> KiB<span style="color:#f92672">)</span>
+
+</code></pre></div><p>Now we can easily access the included files from the mounted cdrom in our Windows 98 environment:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ qemu-system-x86_64 -cdrom test.iso -drive file<span style="color:#f92672">=</span>w98_2nd<span style="color:#f92672">=</span>.qcow2 -m <span style="color:#ae81ff">512</span> -soundhw sb16 -display gtk
+</code></pre></div>
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="http://decirella.github.io/tags/emulation/">emulation</a></li>
+      <li><a href="http://decirella.github.io/tags/software/">software</a></li>
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2022 <a href="http://decirella.github.io/">Preservation Notes</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://git.io/hugopapermod" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>
